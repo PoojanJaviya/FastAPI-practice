@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact me</title>
+</head>
+
+<style>
+    body{
+        background-color: cornsilk;
+    }
+
+    form{
+        background-color: darkgrey;
+        padding : 20px;
+        border-radius: 10px;
+        width: 300px;
+        
+    }
+
+    input, textarea{
+        width: 90%;
+        padding: 8px;
+        border-radius: 6px;
+        border: none;
+    }
+
+    button{
+        border-radius: 5px;
+        width: 100px;
+        height: 40px;
+        background-color: aqua;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    function handleSubmit(event){
+        event.preventDefault();
+
+        alert("Thank you!");
+    }
+</script>
+
+<body>
+    <h1>Hi, It's Poojan!</h1>
+    <h2>Aspiring ML Engineer</h2>
+    <br><br>
+    <h3>Fill out details below</h3>
+
+    <form action="http://127.0.0.1:8000/contact" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name"><br><br>
+        <input type="email" name="email" placeholder="Enter Your Email"><br><br>
+        <textarea name="message" placeholder="Any Message!"></textarea><br><br>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
