@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.db.session import engine, Base
-from app.models import task_model
+from app.models import task_model, user_model
 from app.routers.task_router import router as task_router
 
 app = FastAPI()
