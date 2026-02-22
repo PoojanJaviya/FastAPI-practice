@@ -4,19 +4,32 @@ from app.db.deps import get_db
 from app.schemas.task_schema import TaskCreate, TaskResponse
 from app.services.task_service import create_task, get_all_tasks, delete_task
 from typing import List
+from app.auth.deps import get_current_user
+from app.models.user_model import User
 
 router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
 @router.post("/", response_model=TaskResponse)
-def create_task_endpoint(task: TaskCreate, db: Session = Depends(get_db)):
+def create_task_endpoint(
+    task: TaskCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     return create_task(db, task)
 
 @router.get("/", response_model=List[TaskResponse])
-def get_tasks_endpoint(db: Session = Depends(get_db)):
+def get_tasks_endpoint(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     return get_all_tasks(db)
 
 @router.delete("/{task_id}")
-def delete_task_endpoint(task_id: int, db: Session = Depends(get_db)):
+def delete_task_endpoint(
+    task_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     task = delete_task(db, task_id)
     if task:
         return {"message": "Task deleted"}
