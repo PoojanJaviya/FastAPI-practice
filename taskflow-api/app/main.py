@@ -2,11 +2,13 @@ from fastapi import FastAPI
 from app.db.session import engine, Base
 from app.models import task_model, user_model
 from app.routers.task_router import router as task_router
+from app.auth.auth_router import router as auth_router
 
 app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 
+app.include_router(auth_router)
 app.include_router(task_router)
 
 @app.get("/")
